@@ -56,19 +56,21 @@ impl Client {
         execute_or_die(cmd);
     }
 
-    pub fn tx(&self, code_path: &str, data_path: &str, signer: &str) {
+    pub fn tx(&self, code_path: &str, signer: &str, data_path: Option<&str>) {
         let mut cmd = Command::new("namadac");
-        let cmd = cmd.args([
+        let mut args = vec![
             "tx",
             "--ledger-address",
             &self.ledger_address,
             "--code-path",
             code_path,
-            "--data-path",
-            data_path,
             "--signer",
             signer,
-        ]);
+        ];
+        if data_path.is_some() {
+            args.append(&mut vec!["--data-path", data_path.unwrap()]);
+        };
+        let cmd = cmd.args(args);
         execute_or_die(cmd);
     }
 
