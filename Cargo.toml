@@ -1,0 +1,16 @@
+[package]
+name = "test-runner"
+authors = ["Heliax <hello@heliax.dev>"]
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+namada = {git = "https://github.com/anoma/namada?rev=v0.7.1", features = ["rand"]}
+
+# these patches come from the root workspace Cargo.toml [patch.crates-io] of the namada repo
+[patch.crates-io]
+borsh = {git = "https://github.com/heliaxdev/borsh-rs.git", rev = "cd5223e5103c4f139e0c54cf8259b7ec5ec4073a"}
+borsh-derive = {git = "https://github.com/heliaxdev/borsh-rs.git", rev = "cd5223e5103c4f139e0c54cf8259b7ec5ec4073a"}
+borsh-derive-internal = {git = "https://github.com/heliaxdev/borsh-rs.git", rev = "cd5223e5103c4f139e0c54cf8259b7ec5ec4073a"}
+borsh-schema-derive-internal = {git = "https://github.com/heliaxdev/borsh-rs.git", rev = "cd5223e5103c4f139e0c54cf8259b7ec5ec4073a"}
