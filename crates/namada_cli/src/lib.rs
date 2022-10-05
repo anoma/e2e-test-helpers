@@ -11,7 +11,7 @@ pub enum NamadaError<Reason> {
     Recognized { reason: Reason },
     #[error("The command failed for some unrecognized reason")]
     Unrecognized { output: std::process::Output },
-    #[error("The command failed due to an I/O error")]
+    #[error("The command failed due to an I/O error (e.g. `namada` binary not found on $PATH)")]
     Io { source: io::Error },
 }
 
