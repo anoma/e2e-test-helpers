@@ -38,13 +38,6 @@ pub async fn join_network(
         .await
         .map_err(|source| NamadaError::Io { source })?;
     if output.status.success() {
-        let stdout = String::from_utf8_lossy(&output.stdout);
-        let re = Regex::new(CONNECTION_REFUSED_REGEX).unwrap();
-        if re.is_match(&stdout) {
-            return Err(NamadaError::Recognized {
-                reason: JoinNetworkErrorReason::ConnectionRefused(output),
-            });
-        }
         return Ok(Output {
             raw: output,
             parsed: (),
@@ -56,6 +49,12 @@ pub async fn join_network(
     if re.is_match(&stderr) {
         return Err(NamadaError::Recognized {
             reason: JoinNetworkErrorReason::ChainDirectoryAlreadyExists(output),
+        });
+    }
+    let re = Regex::new(CONNECTION_REFUSED_REGEX).unwrap();
+    if re.is_match(&stderr) {
+        return Err(NamadaError::Recognized {
+            reason: JoinNetworkErrorReason::ConnectionRefused(output),
         });
     }
     Err(NamadaError::Unrecognized { output })
