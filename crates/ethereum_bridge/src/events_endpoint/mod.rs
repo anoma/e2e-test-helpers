@@ -1,5 +1,5 @@
 use borsh::BorshSerialize;
-use eyre::{Context, Result};
+use eyre::{eyre, Context, Result};
 use hyper::{Body, Method, Request, Response};
 use namada::types::{
     address::Address,
@@ -62,6 +62,14 @@ impl Client {
         tracing::debug!("Posting event - {:#?}", event);
         let resp = self.send(&event).await?;
         tracing::debug!("Response: {:#?}", resp);
-        Ok(resp)
+        if resp.status() == hyper::StatusCode::OK {
+            Ok(resp)
+        } else {
+            Err(eyre!(
+                "Got non-200 response - {} - {:#?}",
+                resp.status(),
+                resp
+            ))
+        }
     }
 }
