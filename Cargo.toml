@@ -15,4 +15,4 @@ borsh-schema-derive-internal = {git = "https://github.com/heliaxdev/borsh-rs.git
 [patch."https://github.com/anoma/namada"]
 # specify the specific version of Namada being worked against here
 # https://stackoverflow.com/a/72261235/2387626
-namada = {git = "https://github.com/anoma/namada?rev=v0.7.1"}
+namada = {git = "https://github.com/anoma/namada?rev=v0.7.1", tag = "v0.7.1"}
