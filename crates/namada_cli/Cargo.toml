@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 eyre = "0.6.5"
-namada = {git = "https://github.com/anoma/namada", tag = "v0.7.1"}
+namada = {git = "https://github.com/anoma/namada", rev = "f3a87098fbba9d8708f08b5ddec403945b555ea2"}
 regex = "1.5.4"
 thiserror = "1.0.37"
 tokio = {version = "1.21", features = ["full"]}
