@@ -25,7 +25,10 @@ pub mod raw {
 #[derive(Debug)]
 pub enum JoinNetworkErrorReason {
     ChainDirectoryAlreadyExists(std::process::Output),
+    ConnectionRefused(std::process::Output),
 }
+
+const CONNECTION_REFUSED_REGEX: &str = r#"Connection refused"#;
 
 pub async fn join_network(
     chain_id: &str,
@@ -35,6 +38,13 @@ pub async fn join_network(
         .await
         .map_err(|source| NamadaError::Io { source })?;
     if output.status.success() {
+        let stdout = String::from_utf8_lossy(&output.stdout);
+        let re = Regex::new(CONNECTION_REFUSED_REGEX).unwrap();
+        if re.is_match(&stdout) {
+            return Err(NamadaError::Recognized {
+                reason: JoinNetworkErrorReason::ConnectionRefused(output),
+            });
+        }
         return Ok(Output {
             raw: output,
             parsed: (),
