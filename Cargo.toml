@@ -19,3 +19,9 @@ tendermint-light-client-verifier = {git = "https://github.com/heliaxdev/tendermi
 # patched to a commit on the `eth-bridge-integration` branch of our fork
 ibc = {git = "https://github.com/heliaxdev/ibc-rs.git", rev = "451ff75591d9de48b7147a651858c3daeb5e2436"}
 ibc-proto = {git = "https://github.com/heliaxdev/ibc-rs.git", rev = "451ff75591d9de48b7147a651858c3daeb5e2436"}
+
+
+[patch."https://github.com/anoma/namada"]
+# specify the specific version of Namada being worked against here
+# https://stackoverflow.com/a/72261235/2387626
+namada = {git = "https://github.com/anoma/namada?branch=eth-bridge-integration", rev = "f3a87098fbba9d8708f08b5ddec403945b555ea2"}

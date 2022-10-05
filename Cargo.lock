@@ -1049,7 +1049,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
 [[package]]
 name = "namada"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=f3a87098fbba9d8708f08b5ddec403945b555ea2#f3a87098fbba9d8708f08b5ddec403945b555ea2"
+source = "git+https://github.com/anoma/namada?branch=eth-bridge-integration?rev=f3a87098fbba9d8708f08b5ddec403945b555ea2#f3a87098fbba9d8708f08b5ddec403945b555ea2"
 dependencies = [
  "ark-bls12-381",
  "ark-serialize",
@@ -1102,7 +1102,7 @@ dependencies = [
 [[package]]
 name = "namada_proof_of_stake"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=f3a87098fbba9d8708f08b5ddec403945b555ea2#f3a87098fbba9d8708f08b5ddec403945b555ea2"
+source = "git+https://github.com/anoma/namada?branch=eth-bridge-integration?rev=f3a87098fbba9d8708f08b5ddec403945b555ea2#f3a87098fbba9d8708f08b5ddec403945b555ea2"
 dependencies = [
  "borsh",
  "thiserror",
