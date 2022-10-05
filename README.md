@@ -1,4 +1,4 @@
-# test-runner
+# e2e-test-helpers
 
 > :warning: This repo is experimental and shouldn't be relied upon!
 
