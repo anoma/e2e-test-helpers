@@ -745,7 +745,7 @@ dependencies = [
  "tendermint",
  "tendermint-light-client-verifier",
  "tendermint-proto",
- "time 0.3.14",
+ "time 0.3.15",
  "tracing",
 ]
 
@@ -863,9 +863,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
-version = "0.2.133"
+version = "0.2.134"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0f80d65747a3e43d1596c7c5492d95d5edddaabd45a7fcdb02b95f644164966"
+checksum = "329c933548736bc49fd575ee68c89e8be4d260064184389a5b77517cddd99ffb"
 
 [[package]]
 name = "libsecp256k1"
@@ -933,7 +933,7 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
 [[package]]
 name = "namada"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=v0.7.1#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=v0.7.1#f3c477c67cbee846b7b89a5ed618634544745ab1"
 dependencies = [
  "ark-bls12-381",
  "ark-serialize",
@@ -971,7 +971,7 @@ dependencies = [
 [[package]]
 name = "namada_proof_of_stake"
 version = "0.7.1"
-source = "git+https://github.com/anoma/namada?rev=v0.7.1#159eddc724527f441c9ec439d659b189dec5d6e9"
+source = "git+https://github.com/anoma/namada?rev=v0.7.1#f3c477c67cbee846b7b89a5ed618634544745ab1"
 dependencies = [
  "borsh",
  "thiserror",
@@ -1080,9 +1080,9 @@ checksum = "478c572c3d73181ff3c2539045f6eb99e5491218eae919370993b890cdbdd98e"
 
 [[package]]
 name = "pest"
-version = "2.3.1"
+version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cb779fcf4bb850fbbb0edc96ff6cf34fd90c4b1a112ce042653280d9a7364048"
+checksum = "dbc7bc69c062e492337d74d59b120c274fd3d261b6bf6d3207d499b4b379c41a"
 dependencies = [
  "thiserror",
  "ucd-trie",
@@ -1147,9 +1147,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.44"
+version = "1.0.46"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7bd7356a8122b6c4a24a82b278680c73357984ca2fc79a0f9fa6dea7dced7c58"
+checksum = "94e2ef8dbfc347b10c094890f778ee2e36ca9bb4262e86dc99cd217e35f3470b"
 dependencies = [
  "unicode-ident",
 ]
@@ -1628,7 +1628,7 @@ dependencies = [
  "subtle",
  "subtle-encoding",
  "tendermint-proto",
- "time 0.3.14",
+ "time 0.3.15",
  "zeroize",
 ]
 
@@ -1655,7 +1655,7 @@ dependencies = [
  "serde",
  "tendermint",
  "tendermint-rpc",
- "time 0.3.14",
+ "time 0.3.15",
 ]
 
 [[package]]
@@ -1672,7 +1672,7 @@ dependencies = [
  "serde",
  "serde_bytes",
  "subtle-encoding",
- "time 0.3.14",
+ "time 0.3.15",
 ]
 
 [[package]]
@@ -1693,7 +1693,7 @@ dependencies = [
  "tendermint-config",
  "tendermint-proto",
  "thiserror",
- "time 0.3.14",
+ "time 0.3.15",
  "url",
  "uuid",
  "walkdir",
@@ -1746,9 +1746,9 @@ dependencies = [
 
 [[package]]
 name = "time"
-version = "0.3.14"
+version = "0.3.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3c3f9a28b618c3a6b9251b6908e9c99e04b9e5c02e6581ccbb67d59c34ef7f9b"
+checksum = "d634a985c4d4238ec39cacaed2e7ae552fbd3c476b552c1deac3021b7d7eaf0c"
 dependencies = [
  "libc",
  "num_threads",
