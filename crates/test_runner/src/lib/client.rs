@@ -5,6 +5,8 @@ use namada::types::storage::Key;
 use crate::exec::{execute, execute_or_die};
 use std::process::Command;
 
+const NATIVE_TOKEN: &str = "NAM";
+
 pub struct Client {
     ledger_address: String,
 }
@@ -36,14 +38,14 @@ impl Client {
         execute_or_die(cmd);
     }
 
-    pub fn get_xan_from_faucet(&self, target: &str) {
+    pub fn get_native_tokens_from_faucet(&self, target: &str) {
         let mut cmd = Command::new("namadac");
         let cmd = cmd.args([
             "transfer",
             "--ledger-address",
             &self.ledger_address,
             "--token",
-            "XAN",
+            NATIVE_TOKEN,
             "--amount",
             "1000",
             "--source",
