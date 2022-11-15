@@ -1645,6 +1645,7 @@ dependencies = [
  "hex",
  "namada",
  "rand",
+ "regex",
  "retry",
  "tempfile",
 ]
