@@ -98,7 +98,7 @@ impl Client {
 
 fn parse_query_bytes_output(stdout: &str) -> Result<String> {
     let re = Regex::new(r"Found data: 0x(.*)").expect("Can always construct regex");
-    let caps = match re.captures(&stdout) {
+    let caps = match re.captures(stdout) {
         Some(caps) => caps,
         None => return Err(eyre!("No match found when querying bytes")),
     };
