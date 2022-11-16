@@ -9,7 +9,9 @@ edition = "2021"
 borsh = "0.9.3"
 eyre = "0.6.8"
 hyper = { version = "0.14.20", features = ["full"] }
-namada = {git = "https://github.com/anoma/namada", rev = "f3a87098fbba9d8708f08b5ddec403945b555ea2", features = ["rand"]}
+namada = { git = "https://github.com/anoma/namada?branch=eth-bridge-integration", rev = "da7f527a672a931108175514cc389476d3eb1916", features = [
+    "rand",
+] }
 rand = "0.8"
 tracing = "0.1"
 tracing-subscriber = "0.3"
