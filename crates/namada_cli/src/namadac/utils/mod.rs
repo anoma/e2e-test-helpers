@@ -14,7 +14,13 @@ pub mod raw {
         network_configs_server: Option<&str>,
     ) -> io::Result<std::process::Output> {
         let mut cmd = namadac();
-        let cmd = cmd.args(["utils", "join-network", "--chain-id", chain_id]);
+        let cmd = cmd.args([
+            "utils",
+            "join-network",
+            "--chain-id",
+            chain_id,
+            "--dont-prefetch-wasm",
+        ]);
         if let Some(network_configs_server) = network_configs_server {
             cmd.env(ENV_VAR_NETWORK_CONFIGS_SERVER, network_configs_server);
         }
