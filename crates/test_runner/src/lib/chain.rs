@@ -74,6 +74,6 @@ pub fn provision_chain(
     // TODO: setting up this "owner" account should only be done if necessary for the test
     wallet::gen_address_or_die(owner_implicit_alias);
     client.init_account(owner_implicit_alias, owner_alias, None);
-    // owner may need to make transactions - get some XAN so that we can pay gas
-    client.get_xan_from_faucet(owner_alias);
+    // owner may need to make transactions - get some native token so that we can pay gas
+    client.get_native_tokens_from_faucet(owner_alias);
 }

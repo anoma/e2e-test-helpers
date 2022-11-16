@@ -159,7 +159,7 @@ mod tests {
 
     #[test]
     fn test_parse_balance_of_token_for_owner() {
-        const OUTPUT: &str = "XAN: 923892839\n";
+        const OUTPUT: &str = "NAM: 923892839\n";
         assert_eq!(
             parse_balance_of_token_for_owner(OUTPUT).unwrap(),
             Amount::from(923892839)
