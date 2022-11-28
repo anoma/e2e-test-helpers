@@ -1409,45 +1409,6 @@ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
 
 [[package]]
 name = "namada"
-version = "0.9.0"
-source = "git+https://github.com/anoma/namada?tag=v0.9.0#6cbce4a4dcdd3811679f5eb4aa7c82f51dff74e6"
-dependencies = [
- "ark-bls12-381",
- "ark-serialize",
- "bech32",
- "borsh",
- "chrono",
- "clru",
- "data-encoding",
- "derivative",
- "ed25519-consensus",
- "ferveo-common",
- "ibc",
- "ibc-proto",
- "ics23",
- "itertools",
- "libsecp256k1",
- "namada_proof_of_stake 0.9.0",
- "paste",
- "prost",
- "prost-types",
- "rand",
- "rust_decimal",
- "serde",
- "serde_json",
- "sha2 0.9.9",
- "sparse-merkle-tree",
- "tendermint",
- "tendermint-proto",
- "thiserror",
- "tonic-build",
- "tracing",
- "wasmparser",
- "zeroize",
-]
-
-[[package]]
-name = "namada"
 version = "0.10.1"
 source = "git+https://github.com/anoma/namada?tag=v0.10.1#36fd7d7826fb1f5569a02ae3a5d62dcf15c949fc"
 dependencies = [
@@ -1471,10 +1432,11 @@ dependencies = [
  "libsecp256k1",
  "masp_primitives",
  "masp_proofs",
- "namada_proof_of_stake 0.10.1",
+ "namada_proof_of_stake",
  "paste",
  "prost",
  "prost-types",
+ "rand",
  "rust_decimal",
  "serde",
  "serde_json",
@@ -1494,20 +1456,10 @@ name = "namada_cli"
 version = "0.0.0"
 dependencies = [
  "eyre",
- "namada 0.10.1",
+ "namada",
  "regex",
  "thiserror",
  "tokio",
-]
-
-[[package]]
-name = "namada_proof_of_stake"
-version = "0.9.0"
-source = "git+https://github.com/anoma/namada?tag=v0.9.0#6cbce4a4dcdd3811679f5eb4aa7c82f51dff74e6"
-dependencies = [
- "borsh",
- "derivative",
- "thiserror",
 ]
 
 [[package]]
@@ -2417,7 +2369,7 @@ dependencies = [
  "eyre",
  "fs_extra",
  "hex",
- "namada 0.9.0",
+ "namada",
  "rand",
  "regex",
  "retry",
@@ -2918,12 +2870,22 @@ version = "1.5.0"
 source = "git+https://github.com/heliaxdev/async-process.git?rev=e42c527e87d937da9e01aaeb563c0b948580dc89#e42c527e87d937da9e01aaeb563c0b948580dc89"
 
 [[patch.unused]]
+name = "ibc-relayer"
+version = "0.14.0"
+source = "git+https://github.com/heliaxdev/ibc-rs.git?rev=f4703dfe2c1f25cc431279ab74f10f3e0f6827e2#f4703dfe2c1f25cc431279ab74f10f3e0f6827e2"
+
+[[patch.unused]]
 name = "polling"
 version = "2.3.0"
 source = "git+https://github.com/heliaxdev/polling.git?rev=02a655775282879459a3460e2646b60c005bca2c#02a655775282879459a3460e2646b60c005bca2c"
 
 [[patch.unused]]
 name = "tendermint-config"
+version = "0.23.6"
+source = "git+https://github.com/heliaxdev/tendermint-rs.git?rev=e6c684731f21bffd89886d3e91074b96aee074ba#e6c684731f21bffd89886d3e91074b96aee074ba"
+
+[[patch.unused]]
+name = "tendermint-light-client"
 version = "0.23.6"
 source = "git+https://github.com/heliaxdev/tendermint-rs.git?rev=e6c684731f21bffd89886d3e91074b96aee074ba#e6c684731f21bffd89886d3e91074b96aee074ba"
 
