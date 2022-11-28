@@ -8,7 +8,7 @@ name = "test_runner"
 path = "src/lib/mod.rs"
 
 [dependencies]
-namada = { git = "https://github.com/anoma/namada", tag = "v0.10.1", features = [
+namada = { git = "https://github.com/anoma/namada", rev = "10e283f16a3c06a4999259c5ad1db0d78fa04788", features = [
     "rand",
 ] }
 borsh = "0.9.0"
