@@ -20,6 +20,7 @@ pub mod raw {
         ledger_address: Option<&str>,
         owner: Option<&str>,
         token: Option<&str>,
+        sub_prefix: Option<&str>,
     ) -> io::Result<std::process::Output> {
         let mut cmd = namadac();
         let mut args = vec!["balance"];
@@ -35,6 +36,10 @@ pub mod raw {
             args.push("--token");
             args.push(token);
         }
+        if let Some(sub_prefix) = sub_prefix {
+            args.push("--sub-prefix");
+            args.push(sub_prefix);
+        }
         let cmd = cmd.args(args);
         cmd.output().await
     }
@@ -48,13 +53,15 @@ pub enum BalanceErrorReason {
 
 const NO_BALANCE_FOUND_REGEX: &str = r"No a.* balance found for a.*";
 const SINGLE_TOKEN_BALANCE_REGEX: &str = r"\w+: (\d+)";
+const SINGLE_MULTITOKEN_TOKEN_BALANCE_REGEX: &str = r"\w+ with .*: (\d+\.\d+)";
 
 pub async fn balance(
     ledger_address: Option<&str>,
     owner: Option<&str>,
     token: Option<&str>,
+    sub_prefix: Option<&str>,
 ) -> Result<Output<()>, NamadaError<BalanceErrorReason>> {
-    let output = raw::balance(ledger_address, owner, token)
+    let output = raw::balance(ledger_address, owner, token, sub_prefix)
         .await
         .map_err(|source| NamadaError::Io { source })?;
     if output.status.success() {
@@ -87,7 +94,7 @@ pub async fn balance_of_token_for_owner(
     owner: &str,
     token: &str,
 ) -> Result<Output<Amount>, NamadaError<BalanceErrorReason>> {
-    let output = balance(ledger_address, Some(owner), Some(token)).await?;
+    let output = balance(ledger_address, Some(owner), Some(token), None).await?;
     let stdout = String::from_utf8_lossy(&output.raw.stdout);
     if let Ok(parsed) = parse_balance_of_token_for_owner(&stdout) {
         Ok(Output {
@@ -110,6 +117,35 @@ fn parse_balance_of_token_for_owner(stdout: &str) -> Result<Amount> {
     }
 }
 
+pub async fn balance_of_multitoken_token_for_owner(
+    ledger_address: Option<&str>,
+    owner: &str,
+    token: &str,
+    sub_prefix: &str,
+) -> Result<Output<Amount>, NamadaError<BalanceErrorReason>> {
+    let output = balance(ledger_address, Some(owner), Some(token), Some(sub_prefix)).await?;
+    let stdout = String::from_utf8_lossy(&output.raw.stdout);
+    if let Ok(parsed) = parse_balance_of_multitoken_token_for_owner(&stdout) {
+        Ok(Output {
+            raw: output.raw,
+            parsed,
+        })
+    } else {
+        Err(NamadaError::Unrecognized { output: output.raw })
+    }
+}
+
+fn parse_balance_of_multitoken_token_for_owner(stdout: &str) -> Result<Amount> {
+    let re = Regex::new(SINGLE_MULTITOKEN_TOKEN_BALANCE_REGEX).unwrap();
+    if let Some(captured) = re.captures(stdout) {
+        let n = captured.get(1).unwrap();
+        let n: f64 = n.as_str().parse()?;
+        Ok(Amount::from(n))
+    } else {
+        Err(eyre!("Could not parse a balance"))
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -127,6 +163,21 @@ mod tests {
         assert_eq!(
             parse_balance_of_token_for_owner(OUTPUT).unwrap(),
             Amount::from(923892839)
+        );
+    }
+
+    #[test]
+    fn test_parse_balance_of_multitoken_token_for_owner() {
+        let output = "atest1v9hx7w36g42ysgzzwf5kgem9ypqkgerjv4ehxgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpq8f99ew with ERC20/0x6b175474e89094c44da98b954eedeac495271d0f: 0.0001\n";
+        assert_eq!(
+            parse_balance_of_multitoken_token_for_owner(output).unwrap(),
+            Amount::from(0.0001)
+        );
+
+        let output = "atest1v9hx7w36g42ysgzzwf5kgem9ypqkgerjv4ehxgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpq8f99ew with ERC20/0x6b175474e89094c44da98b954eedeac495271d0f: 32.2934\n";
+        assert_eq!(
+            parse_balance_of_multitoken_token_for_owner(output).unwrap(),
+            Amount::from(32.2934)
         );
     }
 }
