@@ -79,7 +79,7 @@ impl Client {
 
     pub fn query_bytes<T: BorshDeserialize>(&self, storage_key: &Key) -> Result<T> {
         let mut cmd = Command::new("namadac");
-        let cmd = cmd.env("ANOMA_LOG", "none").args([
+        let cmd = cmd.env("NAMADA_LOG", "none").args([
             "query-bytes",
             "--ledger-address",
             &self.ledger_address,
@@ -109,7 +109,7 @@ fn parse_query_bytes_output(stdout: &str) -> Result<String> {
         .to_string())
 }
 
-/// NB: requires ANOMA_NETWORK_CONFIGS_SERVER in env
+/// NB: requires NAMADA_NETWORK_CONFIGS_SERVER in env
 pub fn join_network(chain_id: &str) -> Result<std::process::Output, std::io::Error> {
     let mut cmd = Command::new("namadac");
     let cmd = cmd.args(["utils", "join-network", "--chain-id", chain_id]);

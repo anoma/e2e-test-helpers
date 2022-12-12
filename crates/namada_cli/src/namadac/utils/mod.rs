@@ -7,7 +7,7 @@ pub mod raw {
 
     use crate::namadac::namadac;
 
-    const ENV_VAR_NETWORK_CONFIGS_SERVER: &str = "ANOMA_NETWORK_CONFIGS_SERVER";
+    const ENV_VAR_NETWORK_CONFIGS_SERVER: &str = "NAMADA_NETWORK_CONFIGS_SERVER";
 
     pub async fn join_network(
         chain_id: &str,

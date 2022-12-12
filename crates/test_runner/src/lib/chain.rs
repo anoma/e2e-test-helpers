@@ -3,7 +3,7 @@ use std::path::Path;
 use crate::{client, wallet};
 use retry::{delay::Fixed, retry};
 
-const CHAIN_ID_ENV_VAR: &str = "ANOMA_CHAIN_ID";
+const CHAIN_ID_ENV_VAR: &str = "NAMADA_CHAIN_ID";
 
 pub fn join() {
     let start_delay = std::time::Duration::new(10, 0);
