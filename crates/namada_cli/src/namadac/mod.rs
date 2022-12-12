@@ -1,7 +1,8 @@
 pub mod utils;
 use eyre::{eyre, Result};
-use namada::types::token::Amount;
+use namada_core::types::token::Amount;
 use regex::Regex;
+use rust_decimal::Decimal;
 
 use tokio::process::Command;
 
@@ -139,7 +140,7 @@ fn parse_balance_of_multitoken_token_for_owner(stdout: &str) -> Result<Amount> {
     let re = Regex::new(SINGLE_MULTITOKEN_TOKEN_BALANCE_REGEX).unwrap();
     if let Some(captured) = re.captures(stdout) {
         let n = captured.get(1).unwrap();
-        let n: f64 = n.as_str().parse()?;
+        let n = Decimal::from_str_exact(n.as_str())?;
         Ok(Amount::from(n))
     } else {
         Err(eyre!("Could not parse a balance"))
@@ -171,13 +172,13 @@ mod tests {
         let output = "atest1v9hx7w36g42ysgzzwf5kgem9ypqkgerjv4ehxgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpq8f99ew with ERC20/0x6b175474e89094c44da98b954eedeac495271d0f: 0.0001\n";
         assert_eq!(
             parse_balance_of_multitoken_token_for_owner(output).unwrap(),
-            Amount::from(0.0001)
+            Amount::from(Decimal::from_str_exact("0.0001").unwrap())
         );
 
         let output = "atest1v9hx7w36g42ysgzzwf5kgem9ypqkgerjv4ehxgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpq8f99ew with ERC20/0x6b175474e89094c44da98b954eedeac495271d0f: 32.2934\n";
         assert_eq!(
             parse_balance_of_multitoken_token_for_owner(output).unwrap(),
-            Amount::from(32.2934)
+            Amount::from(Decimal::from_str_exact("32.2934").unwrap())
         );
     }
 }

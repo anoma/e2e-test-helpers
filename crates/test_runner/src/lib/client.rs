@@ -1,6 +1,6 @@
 use borsh::BorshDeserialize;
 use eyre::{eyre, Context, Result};
-use namada::types::storage::Key;
+use namada_core::types::storage::Key;
 use regex::Regex;
 
 use crate::exec::{execute, execute_or_die};

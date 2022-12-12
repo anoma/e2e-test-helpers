@@ -1,5 +1,5 @@
 use eyre::{eyre, Result};
-use namada::types::address::Address;
+use namada_core::types::address::Address;
 use regex::Regex;
 
 use crate::{NamadaError, Output};
