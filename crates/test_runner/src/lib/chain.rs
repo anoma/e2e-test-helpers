@@ -24,7 +24,7 @@ pub fn join() {
         options.skip_exist = true;
 
         let from = Path::new("wasm");
-        let to = format!(".anoma/{}", &chain_id);
+        let to = format!(".namada/{}", &chain_id);
         let to = Path::new(&to);
         println!("Copying {:?} to {:?}", from, to);
         dir::move_dir(from, to, &options).unwrap();
@@ -43,7 +43,7 @@ pub fn join_or_exit(chain_id: &str) {
 }
 
 pub fn ensure_joined_or_exit(chain_id: &str) {
-    let chain_dir = format!(".anoma/{}", chain_id);
+    let chain_dir = format!(".namada/{}", chain_id);
     let chain_dir = Path::new(&chain_dir);
     if chain_dir.exists() {
         println!(
